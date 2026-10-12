@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="de" class="h-full">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>404 – LECIFY</title>
+    <meta name="robots" content="noindex" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%8F%B1%3C/text%3E%3C/svg%3E" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      (function () {
+        var stored = null;
+        try { stored = localStorage.getItem("lecify-theme"); } catch (e) {}
+        var theme = stored || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+        if (theme === "dark") document.documentElement.classList.add("dark");
+      })();
+      tailwind.config = { darkMode: "class" };
+    </script>
+    <style>
+      :root { --bg:#fff; --fg:#09090b; --muted-fg:#71717a; --border:#e4e4e7; --primary:#18181b; --primary-fg:#fafafa; }
+      :root.dark { --bg:#0a0a0a; --fg:#fafafa; --muted-fg:#a1a1aa; --border:#27272a; --primary:#fafafa; --primary-fg:#18181b; }
+      body { background: var(--bg); color: var(--fg); }
+      .muted-fg { color: var(--muted-fg); }
+      .border-token { border-color: var(--border); }
+      .primary-bg { background: var(--primary); color: var(--primary-fg); }
+      .primary-bg:hover { opacity: 0.9; }
+    </style>
+  </head>
+  <body class="min-h-dvh font-sans antialiased">
+    <main class="mx-auto flex min-h-dvh max-w-xl flex-col items-start justify-center gap-6 px-6">
+      <span class="muted-fg text-sm tracking-wider uppercase">Fehler 404</span>
+      <h1 class="text-5xl font-semibold tracking-tight">Hier ist nichts.</h1>
+      <p class="muted-fg">
+        Die aufgerufene Seite existiert nicht (oder nicht mehr). Zurück zur Startseite:
+      </p>
+      <a href="/" class="primary-bg rounded-lg px-5 py-2.5 text-sm font-medium">LECIFY öffnen</a>
+    </main>
+  </body>
+</html>

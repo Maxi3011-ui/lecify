@@ -1,18 +1,274 @@
 <!doctype html>
-<html lang="de">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>lecify</title>
-<style>
-  body { margin: 0; min-height: 100vh; display: grid; place-items: center; font-family: -apple-system, system-ui, sans-serif; background: #fff; color: #111; }
-  p { color: #666; }
-</style>
-</head>
-<body>
-  <main>
-    <h1>lecify</h1>
-    <p>Hier entsteht gerade etwas.</p>
-  </main>
-</body>
+<html lang="de" class="h-full">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LECIFY – Zeit. Projekte. Reports.</title>
+    <meta
+      name="description"
+      content="LECIFY ist eine Multi-Tenant-Zeiterfassung für Freiberuflerinnen, Agenturen und Teams. Timer, Projekte, abrechenbare Stunden, CSV-Export — alles mit Workspace-Isolation und Rollen ab dem ersten Klick."
+    />
+    <meta name="color-scheme" content="light dark" />
+
+    <!-- Open Graph / social -->
+    <meta property="og:title" content="LECIFY – Zeit. Projekte. Reports." />
+    <meta
+      property="og:description"
+      content="Multi-Tenant-Zeiterfassung für Freiberuflerinnen, Agenturen und Teams. DSGVO-konform, hosted in der EU."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://lecify.mattea.pro" />
+
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%8F%B1%3C/text%3E%3C/svg%3E" />
+
+    <!-- No build step: Tailwind Play CDN. The CDN warning in DevTools is
+         expected on a static Pages site and does not affect visitors. -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      // Apply the saved theme before Tailwind paints to avoid a flash.
+      (function () {
+        var stored = null;
+        try { stored = localStorage.getItem("lecify-theme"); } catch (e) {}
+        var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        var theme = stored || (prefersDark ? "dark" : "light");
+        if (theme === "dark") document.documentElement.classList.add("dark");
+      })();
+
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: [
+                "ui-sans-serif",
+                "system-ui",
+                "-apple-system",
+                "Segoe UI",
+                "Inter",
+                "sans-serif",
+              ],
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      /* Mirror the shadcn-ish semantic palette used in the SaaS app. */
+      :root {
+        --bg: #ffffff;
+        --fg: #09090b;
+        --muted: #f4f4f5;
+        --muted-fg: #71717a;
+        --border: #e4e4e7;
+        --primary: #18181b;
+        --primary-fg: #fafafa;
+      }
+      :root.dark {
+        --bg: #0a0a0a;
+        --fg: #fafafa;
+        --muted: #18181b;
+        --muted-fg: #a1a1aa;
+        --border: #27272a;
+        --primary: #fafafa;
+        --primary-fg: #18181b;
+      }
+      body {
+        background: var(--bg);
+        color: var(--fg);
+      }
+      .muted-bg {
+        background: var(--muted);
+      }
+      .muted-fg {
+        color: var(--muted-fg);
+      }
+      .border-token {
+        border-color: var(--border);
+      }
+      .primary-bg {
+        background: var(--primary);
+        color: var(--primary-fg);
+      }
+      .primary-bg:hover {
+        opacity: 0.9;
+      }
+      .outline-btn {
+        border: 1px solid var(--border);
+      }
+      .outline-btn:hover {
+        background: var(--muted);
+      }
+    </style>
+  </head>
+
+  <body class="min-h-dvh font-sans antialiased">
+    <div class="flex min-h-dvh flex-col">
+      <!-- Header -->
+      <header class="border-b border-token">
+        <div class="mx-auto flex h-14 max-w-5xl items-center justify-between px-6">
+          <a href="/" class="text-lg font-semibold tracking-tight">LECIFY</a>
+          <nav class="flex items-center gap-3">
+            <button
+              id="theme-toggle"
+              type="button"
+              aria-label="Theme umschalten"
+              class="outline-btn rounded-md px-2.5 py-1.5 text-xs font-medium"
+            >
+              <span class="hidden dark:inline">Hell</span>
+              <span class="inline dark:hidden">Dunkel</span>
+            </button>
+            <a
+              href="https://lecify.vercel.app/login"
+              data-app-link
+              class="muted-fg text-sm font-medium hover:opacity-80"
+              >Anmelden</a
+            >
+            <a
+              href="https://lecify.vercel.app/register"
+              data-app-link
+              class="primary-bg rounded-lg px-3 py-1.5 text-sm font-medium"
+              >Konto erstellen</a
+            >
+          </nav>
+        </div>
+      </header>
+
+      <main class="flex-1">
+        <!-- Hero -->
+        <section class="mx-auto flex max-w-5xl flex-col items-start gap-6 px-6 pt-24 pb-16">
+          <span
+            class="muted-bg muted-fg rounded-full border border-token px-3 py-1 text-xs font-medium tracking-wider uppercase"
+          >
+            SaaS Zeiterfassung · DSGVO-konform · hosted in der EU
+          </span>
+          <h1 class="max-w-3xl text-5xl font-semibold tracking-tight sm:text-6xl">
+            Zeit. Projekte. Reports.
+            <span class="muted-fg"> Klarheit statt Timesheets-Ratespiel.</span>
+          </h1>
+          <p class="muted-fg max-w-2xl text-lg">
+            LECIFY ist eine Multi-Tenant-Zeiterfassung für Freiberuflerinnen, Agenturen und Teams.
+            Timer, Projekte, abrechenbare Stunden, CSV-Export — alles mit Workspace-Isolation und
+            Rollen ab dem ersten Klick.
+          </p>
+          <div class="flex flex-col gap-3 sm:flex-row">
+            <a
+              href="https://lecify.vercel.app/register"
+              data-app-link
+              class="primary-bg rounded-lg px-5 py-2.5 text-sm font-medium"
+              >Kostenlos starten</a
+            >
+            <a
+              href="https://lecify.vercel.app/login"
+              data-app-link
+              class="outline-btn rounded-lg px-5 py-2.5 text-sm font-medium"
+              >Zum Login</a
+            >
+          </div>
+          <p class="muted-fg text-xs">
+            Hinweis: Die Links zur Anwendung zeigen aktuell auf einen Platzhalter
+            (<code>lecify.vercel.app</code>). Die endgültige App-URL wird mit dem Beta-Launch hier
+            eingetragen.
+          </p>
+        </section>
+
+        <!-- Features -->
+        <section class="border-t border-token">
+          <div class="mx-auto max-w-5xl px-6 py-16">
+            <h2 class="mb-10 text-2xl font-semibold tracking-tight">Was drin ist</h2>
+            <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              <div class="rounded-lg border border-token p-5">
+                <h3 class="mb-2 font-semibold">Multi-Workspace</h3>
+                <p class="muted-fg text-sm">
+                  Beliebig viele Workspaces, saubere Rollen (Owner / Admin / Manager / Member),
+                  serverseitige Isolation durch das Prisma-Scope-Pattern.
+                </p>
+              </div>
+              <div class="rounded-lg border border-token p-5">
+                <h3 class="mb-2 font-semibold">Timer, der stimmt</h3>
+                <p class="muted-fg text-sm">
+                  Server-anchored Live-Counter, Doppelstarts DB-seitig blockiert, idempotente
+                  Stops, Rate-Snapshot beim Stop — und ja, auch über Mitternacht.
+                </p>
+              </div>
+              <div class="rounded-lg border border-token p-5">
+                <h3 class="mb-2 font-semibold">Projekte & Kunden</h3>
+                <p class="muted-fg text-sm">
+                  Projekte mit Farbe, Status, Budget und Stundensätzen. Public/private Projekte
+                  für sensible Mandate. Tasks und Tags inklusive.
+                </p>
+              </div>
+              <div class="rounded-lg border border-token p-5">
+                <h3 class="mb-2 font-semibold">Reports in Echtzeit</h3>
+                <p class="muted-fg text-sm">
+                  Summary nach Projekt, Kunde, User, Task oder Tag · Diagramme · Billable Amount ·
+                  Filter mit URL-State · Streaming-CSV-Export.
+                </p>
+              </div>
+              <div class="rounded-lg border border-token p-5">
+                <h3 class="mb-2 font-semibold">DSGVO-fest</h3>
+                <p class="muted-fg text-sm">
+                  Hosted in der EU, Audit-Log für kritische Aktionen, Tokens gehasht gespeichert,
+                  CSP + Clickjacking-Schutz als Default.
+                </p>
+              </div>
+              <div class="rounded-lg border border-token p-5">
+                <h3 class="mb-2 font-semibold">Open Stack</h3>
+                <p class="muted-fg text-sm">
+                  Next.js 16, React 19, Prisma 7, PostgreSQL. Alles typsicher, alles testbar —
+                  Vitest-Specs für die Kern-Policy, Script-Suites gegen eine echte DB.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="border-t border-token">
+          <div class="mx-auto flex max-w-5xl flex-col items-start gap-4 px-6 py-16">
+            <h2 class="text-2xl font-semibold tracking-tight">Start in zwei Minuten.</h2>
+            <p class="muted-fg max-w-2xl text-sm">
+              Konto erstellen · E-Mail bestätigen · ersten Workspace anlegen · Timer starten. Keine
+              Kreditkarte, keine 14-Tage-Falle — LECIFY ist aktuell komplett kostenlos.
+            </p>
+            <a
+              href="https://lecify.vercel.app/register"
+              data-app-link
+              class="primary-bg rounded-lg px-5 py-2.5 text-sm font-medium"
+              >Konto erstellen</a
+            >
+          </div>
+        </section>
+      </main>
+
+      <footer class="border-t border-token">
+        <div
+          class="muted-fg mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-3 px-6 py-6 text-xs"
+        >
+          <span>© <span id="year"></span> LECIFY</span>
+          <nav class="flex gap-4">
+            <a href="/impressum.html" class="hover:opacity-80">Impressum</a>
+            <a href="/datenschutz.html" class="hover:opacity-80">Datenschutz</a>
+            <a href="/agb.html" class="hover:opacity-80">AGB</a>
+          </nav>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      // Theme toggle: persisted in localStorage, defaults to prefers-color-scheme.
+      (function () {
+        var root = document.documentElement;
+        var btn = document.getElementById("theme-toggle");
+        if (btn) {
+          btn.addEventListener("click", function () {
+            var isDark = root.classList.toggle("dark");
+            try { localStorage.setItem("lecify-theme", isDark ? "dark" : "light"); } catch (e) {}
+          });
+        }
+        var y = document.getElementById("year");
+        if (y) y.textContent = String(new Date().getFullYear());
+      })();
+    </script>
+  </body>
 </html>

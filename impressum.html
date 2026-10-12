@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="de" class="h-full">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Impressum – LECIFY</title>
+    <meta name="robots" content="noindex" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%8F%B1%3C/text%3E%3C/svg%3E" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      (function () {
+        var stored = null;
+        try { stored = localStorage.getItem("lecify-theme"); } catch (e) {}
+        var theme = stored || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+        if (theme === "dark") document.documentElement.classList.add("dark");
+      })();
+      tailwind.config = { darkMode: "class" };
+    </script>
+    <style>
+      :root { --bg:#fff; --fg:#09090b; --muted:#f4f4f5; --muted-fg:#71717a; --border:#e4e4e7; --warn:#fef3c7; --warn-fg:#92400e; --warn-border:#fcd34d; }
+      :root.dark { --bg:#0a0a0a; --fg:#fafafa; --muted:#18181b; --muted-fg:#a1a1aa; --border:#27272a; --warn:#422006; --warn-fg:#fde68a; --warn-border:#78350f; }
+      body { background: var(--bg); color: var(--fg); }
+      .muted-fg { color: var(--muted-fg); }
+      .border-token { border-color: var(--border); }
+      .warn-box { background: var(--warn); color: var(--warn-fg); border: 1px solid var(--warn-border); }
+    </style>
+  </head>
+  <body class="min-h-dvh font-sans antialiased">
+    <div class="flex min-h-dvh flex-col">
+      <header class="border-b border-token">
+        <div class="mx-auto flex h-14 max-w-5xl items-center justify-between px-6">
+          <a href="/" class="text-lg font-semibold tracking-tight">LECIFY</a>
+        </div>
+      </header>
+      <main class="mx-auto w-full max-w-3xl flex-1 space-y-6 px-6 py-10">
+        <h1 class="text-3xl font-semibold tracking-tight">Impressum</h1>
+
+        <div class="warn-box rounded-md p-4 text-sm">
+          <p class="font-semibold">⚠ Platzhalter — nicht final.</p>
+          <p class="mt-1">
+            Diese Seite ist ein Entwurf und erfüllt noch nicht die Anforderungen von § 5 TMG.
+            Vor dem öffentlichen Start muss sie durch eine juristische Fachkraft oder einen
+            Impressumsgenerator (z. B. eRecht24) ersetzt werden.
+          </p>
+        </div>
+
+        <section class="space-y-3 text-sm">
+          <h2 class="font-semibold">Angaben gemäß § 5 TMG</h2>
+          <p class="muted-fg">[Firma / Name der verantwortlichen Person]</p>
+          <p class="muted-fg">[Straße und Hausnummer]</p>
+          <p class="muted-fg">[PLZ Ort]</p>
+          <p class="muted-fg">[Land]</p>
+        </section>
+
+        <section class="space-y-3 text-sm">
+          <h2 class="font-semibold">Kontakt</h2>
+          <p class="muted-fg">E-Mail: [kontakt@…]</p>
+          <p class="muted-fg">Telefon (optional): [+49 …]</p>
+        </section>
+
+        <section class="space-y-3 text-sm">
+          <h2 class="font-semibold">Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h2>
+          <p class="muted-fg">[Name, Anschrift]</p>
+        </section>
+
+        <p class="muted-fg text-xs">Letzte Aktualisierung: 2026-10-12.</p>
+      </main>
+      <footer class="border-t border-token">
+        <div class="muted-fg mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-3 px-6 py-6 text-xs">
+          <a href="/" class="hover:opacity-80">← Zur Startseite</a>
+          <nav class="flex gap-4">
+            <a href="/impressum.html" class="hover:opacity-80">Impressum</a>
+            <a href="/datenschutz.html" class="hover:opacity-80">Datenschutz</a>
+            <a href="/agb.html" class="hover:opacity-80">AGB</a>
+          </nav>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
