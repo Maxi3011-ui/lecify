@@ -25,8 +25,9 @@ Repo und wird separat deployed.
 
 ## Links zur App
 
-Die „Konto erstellen" / „Anmelden"-Buttons zeigen aktuell auf `https://lecify.vercel.app` als
-Platzhalter. Beim Beta-Launch wird die echte App-URL per Suchen/Ersetzen eingetragen.
+Die „Konto erstellen" / „Anmelden"-Buttons zeigen auf `https://app.lecify.mattea.pro`
+(die eigentliche SaaS-App auf Vercel). `lecify.vercel.app` ist nur noch der interne
+Vercel-Default-Hostname und wird im normalen User-Flow nicht mehr genutzt.
 
 ## So lädst du eine neue Version hoch (manuell, via GitHub-Web-UI)
 
